@@ -8,30 +8,46 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="abc"
-        android:textColor="@color/purple_200"
+        android:text="@string/app_name2"
+        style="@style/ColoredTextStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
-    <RelativeLayout
-        android:layout_width="336dp"
-        android:layout_height="82dp"
+    <TextView
+        style="@style/ColoredTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/app_name3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/app_name"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <RelativeLayout
+        android:id="@+id/AgeRelativeLayout"
+        style="@style/SettingDataBackground"
+        android:layout_width="340dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FemaleRelativeLayout">
 
         <TextView
             android:id="@+id/Age"
+            style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Age"
-            android:textAlignment="center"></TextView>
+            android:text="@string/age"
+            android:textAlignment="center" />
 
         <NumberPicker
             android:id="@+id/NumberPicker"
@@ -40,7 +56,8 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="130dp"
             android:layout_marginRight="130dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:textSize="20sp">
 
 
         </NumberPicker>
@@ -48,10 +65,113 @@
 
     <ImageButton
         android:id="@+id/FromMainToSettingsActivityButton"
+        android:contentDescription="@string/settings_speakable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@drawable/settings32px"
+        android:background="#0000"/>
+
+    <ImageButton
+        android:id="@+id/FromMainToSettingsActivityButton2"
+        android:contentDescription="@string/help_speakable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/help32px"
+        android:background="#0000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/CenterVerticalLine"
+        style="@style/SettingDataBackground"
+        android:background="#0000"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/MaleRelativeLayout"
+        style="@style/SettingDataBackground"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+
+        android:layout_marginTop="110dp"
+        app:layout_constraintEnd_toStartOf="@+id/CenterVerticalLine"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:contentDescription="@string/male_speakable"
+            android:src="@drawable/male100px" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            android:text="@string/male"
+            android:textAlignment="center" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/FemaleRelativeLayout"
+        style="@style/SettingDataBackground"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+
+        android:layout_marginTop="110dp"
+        app:layout_constraintStart_toEndOf="@+id/CenterVerticalLine"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:contentDescription="@string/female_speakable"
+            android:src="@drawable/female100px" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            android:text="@string/female"
+            android:textAlignment="center" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/CalculateButton"
+        style="@style/CalculateButtonBackground"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/calculate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/CalculationResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        style="@style/ResultTextStyle"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AgeRelativeLayout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
