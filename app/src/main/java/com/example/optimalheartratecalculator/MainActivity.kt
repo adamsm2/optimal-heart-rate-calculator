@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.optimalheartratecalculator.databinding.ActivityMainBinding
@@ -18,9 +19,10 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var sharedPreferences: SharedPreferences
-    lateinit var currentLanguage : String
+    private lateinit var currentLanguage : String
     private val maxAge = 100
     private val minAge = 1
+    private var animationsON = true
 
     companion object {
         var age = 1
@@ -47,24 +49,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar?.hide()
         binding.Age.text = age.toString()
         setGender()
-        loadMode()
+        loadSharedPreferences()
         setListeners()
     }
 
     override fun onResume() {
         super.onResume()
+        animationsON = sharedPreferences.getBoolean("animations", true)
         val language = sharedPreferences.getString("language", "en")
         if (language != currentLanguage) {
             recreate()
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        val editor = sharedPreferences.edit()
+        editor.putInt("age", age)
+        editor.apply()
+    }
+
+    private fun loadSharedPreferences() {
+        animationsON = sharedPreferences.getBoolean("animations", true)
+        loadMode()
+        loadAge()
+    }
     private fun loadMode() {
-        var nightMode = sharedPreferences.getBoolean("night", false)
+        val nightMode = sharedPreferences.getBoolean("night", false)
         if(nightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             AppCompatDelegate.getDefaultNightMode()
@@ -72,6 +86,12 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
+
+    private fun loadAge() {
+        age = sharedPreferences.getInt("age", 1)
+        binding.Age.text = age.toString()
+    }
+
 
     private fun setGender() {
         if(maleIsSet == true) {
@@ -124,34 +144,44 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun showResult() {
+        if(maleIsSet == null) {
+            binding.CalculationResult.text = getString(R.string.set_gender)
+            return
+        }
+        binding.CalculationResult.text = if (maleIsSet as Boolean) "%.1f".format(0.5 * (226 - age)) + " - " + "%.1f".format(0.85 * (226 - age))  + "\n" + getString(R.string.BPM) else "%.1f".format(0.5 * (220 - age)) + " - " + "%.1f".format(0.85 * (220 - age))  + "\n" + getString(R.string.BPM)
+        if(animationsON) {
+            binding.CalculationResult.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.shake))
+        }
+    }
+
     private fun setListeners() {
         binding.MaleRelativeLayout.setOnClickListener{
             if(maleIsSet == true) {
                 maleIsSet = null
                 unsetGender()
+                binding.CalculationResult.text = getString(R.string.set_gender)
                 return@setOnClickListener
             }
             maleIsSet = true
             setMale()
+            showResult()
         }
 
         binding.FemaleRelativeLayout.setOnClickListener{
             if(maleIsSet == false) {
                 maleIsSet = null
                 unsetGender()
+                binding.CalculationResult.text = getString(R.string.set_gender)
                 return@setOnClickListener
             }
             maleIsSet = false
             setFemale()
+            showResult()
         }
 
         binding.CalculateButton.setOnClickListener{
-            if (maleIsSet == null) {
-                binding.CalculationResult.text = getString(R.string.set_gender)
-                return@setOnClickListener
-            }
-            binding.CalculationResult.text = if (maleIsSet as Boolean) "%.1f".format(0.5 * (226 - age)) + " - " + "%.1f".format(0.85 * (226 - age))  + "\n" + getString(R.string.BPM) else "%.1f".format(0.5 * (220 - age)) + " - " + "%.1f".format(0.85 * (220 - age))  + "\n" + getString(R.string.BPM)
-            binding.CalculationResult.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.shake))
+            showResult()
         }
 
         binding.FromMainToSettingsActivityButton.setOnClickListener{
@@ -163,14 +193,52 @@ class MainActivity : AppCompatActivity() {
             if(age < maxAge) {
                 age++
                 binding.Age.text = age.toString()
+                showResult()
             }
+        }
+
+        binding.Plus.setOnLongClickListener {
+            Thread {
+                while(binding.Plus.isPressed) {
+                    if(age < maxAge) {
+                        age++
+                        binding.Age.text = age.toString()
+                        showResult()
+                    }
+                    Thread.sleep(100)
+                }
+            }.start()
+            true
+        }
+
+        binding.Plus.setOnTouchListener {_, event ->
+            false
         }
 
         binding.Minus.setOnClickListener{
             if(age > minAge) {
                 age--
                 binding.Age.text = age.toString()
+                showResult()
             }
+        }
+
+        binding.Minus.setOnLongClickListener {
+            Thread {
+                while(binding.Minus.isPressed) {
+                    if(age > minAge) {
+                        age--
+                        binding.Age.text = age.toString()
+                        showResult()
+                    }
+                    Thread.sleep(100)
+                }
+            }.start()
+            true
+        }
+
+        binding.Minus.setOnTouchListener {_, event ->
+            false
         }
 
         binding.HelpButton.setOnClickListener{

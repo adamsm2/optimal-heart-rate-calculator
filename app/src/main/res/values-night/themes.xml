@@ -32,6 +32,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextStyleForLanguages">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="ResultTextStyle">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">25sp</item>
@@ -78,6 +84,10 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AnimationsSwitch">
+        <item name="android:track">@drawable/night_mode_animations_switch</item>
     </style>
 
 </resources>

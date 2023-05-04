@@ -11,6 +11,7 @@ import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
     private var isNightMode = false
+    private var animationsON = true
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var binding: ActivitySettingsBinding
 
@@ -31,12 +32,12 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_settings)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()
         updateModeSwitcher()
+        updateAnimationsSwitcher()
         setListeners()
     }
 
@@ -51,12 +52,16 @@ class SettingsActivity : AppCompatActivity() {
         binding.ModeSwitch.isChecked = !isNightMode
     }
 
+    private fun updateAnimationsSwitcher() {
+        animationsON = sharedPreferences.getBoolean("animations", true)
+        binding.AnimationsSwitch.isChecked = animationsON
+    }
+
     private fun setListeners() {
-        binding.ModeSwitch.setOnClickListener{
+        binding.ModeSwitch.setOnCheckedChangeListener {view, isChecked ->
             val editor = sharedPreferences.edit()
-            /* ================================================== */
-            if(isNightMode) {                                /*binding.ModeSwitch.isChecked*/
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) /* ====================*/
+            if(isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 editor.putBoolean("night", false)
                 editor.apply()
                 isNightMode = false
@@ -67,6 +72,21 @@ class SettingsActivity : AppCompatActivity() {
                 isNightMode = true
             }
         }
+
+
+        binding.AnimationsSwitch.setOnCheckedChangeListener {view, isChecked ->
+            val editor = sharedPreferences.edit()
+            if(isChecked) {
+                editor.putBoolean("animations", true)
+                editor.apply()
+                animationsON = true
+            } else {
+                editor.putBoolean("animations", false)
+                editor.apply()
+                animationsON = false
+            }
+        }
+
 
         binding.FromSettingsToMainActivityButton.setOnClickListener{
             finish()

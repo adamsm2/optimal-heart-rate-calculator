@@ -19,6 +19,7 @@
     <string name="formula">Male:\n\t From: 0,5 * (226 - age)\n\t To:      0,85 * (226 - age)\nFemale:\n\t From: 0,5 * (220 - age)\n\t To:      0,85 * (220 - age)</string>
     <string name="close_window">Close</string>
     <string name="set_gender">Set your gender before calculation</string>
+    <string name="animations">Animations</string>
 
 
 

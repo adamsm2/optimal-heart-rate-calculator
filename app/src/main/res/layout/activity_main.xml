@@ -39,7 +39,7 @@
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FemaleRelativeLayout">
+        app:layout_constraintTop_toBottomOf="@id/FemaleRelativeLayout">
 
         <TextView
             android:id="@+id/AgeText"
@@ -52,7 +52,7 @@
         <TextView
             android:id="@+id/Age"
             style="@style/TextStyle"
-            android:layout_below="@+id/AgeText"
+            android:layout_below="@id/AgeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center" />
@@ -61,7 +61,7 @@
             android:id="@+id/Plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
             android:layout_marginBottom="5dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
@@ -71,7 +71,7 @@
             android:id="@+id/Minus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="60dp"
+            android:layout_marginEnd="60dp"
             android:layout_marginBottom="5dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
@@ -87,6 +87,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         app:srcCompat="@drawable/settings32px"
         android:background="#0000"/>
 
@@ -95,6 +97,8 @@
         android:contentDescription="@string/help_speakable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
         android:src="@drawable/help32px"
         android:background="#0000"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +126,7 @@
         android:layout_height="160dp"
 
         android:layout_marginTop="110dp"
-        app:layout_constraintEnd_toStartOf="@+id/CenterVerticalLine"
+        app:layout_constraintEnd_toStartOf="@id/CenterVerticalLine"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -148,7 +152,7 @@
         android:layout_height="160dp"
 
         android:layout_marginTop="110dp"
-        app:layout_constraintStart_toEndOf="@+id/CenterVerticalLine"
+        app:layout_constraintStart_toEndOf="@id/CenterVerticalLine"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -188,7 +192,7 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AgeRelativeLayout" />
+        app:layout_constraintTop_toBottomOf="@id/AgeRelativeLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,7 @@
             <solid
                 android:color="#F6997B"/>
             <size
-                android:height="20dp"/>
+                android:height="8dp"/>
             <corners
                 android:radius="100dp"/>
         </shape>
@@ -19,9 +19,9 @@
         <shape
             android:shape="rectangle">
             <solid
-                android:color="#FF4C4C"/>
+                android:color="#878585"/>
             <size
-                android:height="20dp"/>
+                android:height="8dp"/>
             <corners
                 android:radius="100dp"/>
         </shape>

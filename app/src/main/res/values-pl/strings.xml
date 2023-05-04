@@ -20,6 +20,7 @@
     <string name="formula">Mężczyzna:\n\t Od: 0,5 * (226 - wiek)\n\t Do: 0,85 * (226 - wiek)\nKobieta:\n\t Od: 0,5 * (220 - wiek)\n\t Do: 0,85 * (220 - wiek)</string>
     <string name="close_window">Zamknij</string>
     <string name="set_gender">Ustaw płeć przed obliczeniem</string>
+    <string name="animations">Animacje</string>
 
 
 

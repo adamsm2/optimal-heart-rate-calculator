@@ -7,127 +7,18 @@
     style="@style/ScreenBackground"
     tools:context=".SettingsActivity">
 
-
-    <RelativeLayout
-        android:id="@+id/SelectLanguageRelativeLayout"
-        style="@style/SettingDataBackground"
-        android:layout_width="320dp"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toBottomOf="@+id/English"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView">
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/SelectModeRelativeLayout"
-        style="@style/SettingDataBackground"
-        android:layout_width="320dp"
-        android:layout_height="130dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Moon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ModeSwitch">
-    </RelativeLayout>
-
-
-
-
     <ImageButton
         android:id="@+id/FromSettingsToMainActivityButton"
         android:contentDescription="@string/back_to_main_menu_speakable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/BackArrow"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:background="#0000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
-
-    <ImageButton
-        android:id="@+id/ChangeLanguageToPolish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#0000"
-        android:contentDescription="@string/help_speakable"
-        android:src="@drawable/poland100px"
-        app:layout_constraintEnd_toStartOf="@+id/SettingsCenterVerticalLine"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <ImageButton
-        android:id="@+id/ChangeLanguageToEnglish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#0000"
-        android:contentDescription="@string/help_speakable"
-        android:src="@drawable/uk100px"
-        app:layout_constraintStart_toEndOf="@+id/SettingsCenterVerticalLine"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <ImageButton
-        android:id="@+id/Moon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#0000"
-        android:contentDescription="@string/help_speakable"
-        android:layout_marginTop="150dp"
-        android:src="@drawable/white_moon64px"
-        app:layout_constraintStart_toStartOf="@+id/ChangeLanguageToPolish"
-        app:layout_constraintTop_toBottomOf="@+id/Polish" />
-
-    <ImageButton
-        android:id="@+id/Sun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#0000"
-        android:contentDescription="@string/help_speakable"
-        android:layout_marginTop="150dp"
-        android:src="@drawable/white_sun64px"
-        app:layout_constraintEnd_toEndOf="@+id/ChangeLanguageToEnglish"
-        app:layout_constraintTop_toBottomOf="@+id/English" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TextStyle"
-        android:text="@string/select_language"
-        android:layout_marginTop="110dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Polish"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/polish"
-        app:layout_constraintEnd_toEndOf="@+id/ChangeLanguageToPolish"
-        app:layout_constraintStart_toStartOf="@+id/ChangeLanguageToPolish"
-        app:layout_constraintTop_toBottomOf="@+id/ChangeLanguageToPolish" />
-
-    <TextView
-        android:id="@+id/English"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/english"
-        app:layout_constraintEnd_toEndOf="@+id/ChangeLanguageToEnglish"
-        app:layout_constraintStart_toStartOf="@+id/ChangeLanguageToEnglish"
-        app:layout_constraintTop_toBottomOf="@+id/ChangeLanguageToEnglish" />
-
-    <RelativeLayout
-        android:id="@+id/SettingsCenterVerticalLine"
-        style="@style/SettingDataBackground"
-        android:background="#0000"
-        android:layout_width="40dp"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </RelativeLayout>
 
     <TextView
         android:id="@+id/Settings"
@@ -136,29 +27,181 @@
         android:layout_height="wrap_content"
         android:text="@string/settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/FromSettingsToMainActivityButton"
-        app:layout_constraintTop_toTopOf="@+id/SettingsCenterVerticalLine" />
+        app:layout_constraintStart_toStartOf="@id/FromSettingsToMainActivityButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Switch
-        android:id="@+id/ModeSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:track="@drawable/mode_switch"
-        android:height="50dp"
-        android:width="50dp"
-        app:layout_constraintEnd_toStartOf="@+id/Sun"
-        app:layout_constraintStart_toEndOf="@+id/Moon"
-        app:layout_constraintTop_toTopOf="@+id/Moon" />
 
-    <TextView
-        android:id="@+id/SelectModeTextView"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select_mode"
-        app:layout_constraintBottom_toTopOf="@+id/ModeSwitch"
+    <RelativeLayout
+        android:id="@+id/SelectLanguageRelativeLayout"
+        style="@style/SettingDataBackground"
+        android:layout_width="320dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Settings">
+
+        <TextView
+            android:id="@+id/SelectLanguageTextView"
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_language"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/ChangeLanguageToPolish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SelectLanguageTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="40dp"
+            android:background="#0000"
+            android:contentDescription="@string/help_speakable"
+            android:src="@drawable/poland100px" />
+
+        <ImageButton
+            android:id="@+id/ChangeLanguageToEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0000"
+            android:layout_below="@id/SelectLanguageTextView"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:contentDescription="@string/help_speakable"
+            android:src="@drawable/uk100px" />
+
+        <TextView
+            style="@style/TextStyleForLanguages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ChangeLanguageToPolish"
+            android:layout_alignStart="@id/ChangeLanguageToPolish"
+            android:layout_alignEnd="@id/ChangeLanguageToPolish"
+            android:gravity="center"
+            android:text="@string/polish" />
+
+        <TextView
+            style="@style/TextStyleForLanguages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ChangeLanguageToEnglish"
+            android:layout_alignStart="@id/ChangeLanguageToEnglish"
+            android:layout_alignEnd="@id/ChangeLanguageToEnglish"
+            android:gravity="center"
+            android:text="@string/english" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/SelectModeRelativeLayout"
+        style="@style/SettingDataBackground"
+        android:layout_width="320dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/SelectLanguageRelativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_mode"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"  />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0000"
+            android:contentDescription="@string/help_speakable"
+            android:src="@drawable/white_moon64px"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="58dp"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0000"
+            android:contentDescription="@string/help_speakable"
+            android:src="@drawable/white_sun64px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="58dp"
+            android:layout_centerVertical="true"/>
+
+        <Switch
+            android:id="@+id/ModeSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/mode_switch"
+            android:height="50dp"
+            android:width="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/AnimationsRelativeLayout"
+        style="@style/SettingDataBackground"
+        android:layout_width="320dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/SelectModeRelativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/animations"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"  />
+
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OFF"
+            android:layout_alignStart="@id/AnimationsSwitch"
+            android:layout_marginLeft="-60dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ON"
+            android:layout_alignEnd="@id/AnimationsSwitch"
+            android:layout_marginRight="-60dp"
+            android:layout_centerVertical="true"/>
+
+
+        <Switch
+            android:id="@+id/AnimationsSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:thumb="@drawable/thumb"
+            style="@style/AnimationsSwitch"
+            android:height="50dp"
+            android:width="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
