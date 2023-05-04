@@ -1,89 +1,67 @@
 package com.example.optimalheartratecalculator
 
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.ConfigurationCompat
-import com.example.optimalheartratecalculator.databinding.ActivityMainBinding
 import com.example.optimalheartratecalculator.databinding.ActivitySettingsBinding
 import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
     private var isNightMode = false
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var languageSharedPreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
-    private lateinit var langEditor: SharedPreferences.Editor
     private lateinit var binding: ActivitySettingsBinding
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(ContextWrapper(newBase.setAppLocale()))
+    }
+
+    private fun Context.setAppLocale() : Context {
+        sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val language = sharedPreferences.getString("language", "en")
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        config.setLayoutDirection(locale)
+        return createConfigurationContext(config)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        //setContentView(R.layout.activity_settings)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()
-        loadSharedPreferences()
+        updateModeSwitcher()
         setListeners()
     }
 
     private fun changeLanguage(lang: String) {
-        MainActivity.shouldRecreate = true
-
-        langEditor = languageSharedPreferences.edit()
+        val langEditor = sharedPreferences.edit()
         langEditor.putString("language", lang)
         langEditor.apply()
-
-        //val locale = Locale(lang)
-        //Locale.setDefault(locale)
-        //val config = Configuration()
-        /* ========================================================== */
-        /* doczytac configuration compat itp */
-        /* ========================================================== */
-        //ConfigurationCompat.setLocale(config, locale)
-        //baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
     }
 
-    private fun loadSharedPreferences() {
-        loadLanguage()
-        loadMode()
-    }
-
-    private fun loadMode() {
-        sharedPreferences = getSharedPreferences("mode", Context.MODE_PRIVATE)
+    private fun updateModeSwitcher() {
         isNightMode = sharedPreferences.getBoolean("night", false)
         binding.ModeSwitch.isChecked = !isNightMode
     }
 
-    private fun loadLanguage() {
-        languageSharedPreferences = getSharedPreferences("language", Context.MODE_PRIVATE)
-        var language = languageSharedPreferences.getString("language", "en")
-        var locale = Locale(language)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        config.setLocale(Locale(language))
-
-        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-
-    }
-
     private fun setListeners() {
         binding.ModeSwitch.setOnClickListener{
-            MainActivity.shouldRecreate = false
+            val editor = sharedPreferences.edit()
             /* ================================================== */
             if(isNightMode) {                                /*binding.ModeSwitch.isChecked*/
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) /* ====================*/
-                editor = sharedPreferences.edit()
                 editor.putBoolean("night", false)
                 editor.apply()
                 isNightMode = false
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                editor = sharedPreferences.edit()
                 editor.putBoolean("night", true)
                 editor.apply()
                 isNightMode = true
@@ -94,19 +72,15 @@ class SettingsActivity : AppCompatActivity() {
             finish()
         }
 
-//        binding.button.setOnClickListener{
-//            binding.TestowyText.text = sharedPreferences.getBoolean("night", false).toString()
-//        }
-
         binding.ChangeLanguageToEnglish.setOnClickListener{
-            if (languageSharedPreferences.getString("language", "en") == "en") {
+            if (sharedPreferences.getString("language", "en") == "en") {
                 return@setOnClickListener
             }
             changeLanguage("en")
             recreate()
         }
         binding.ChangeLanguageToPolish.setOnClickListener{
-            if (languageSharedPreferences.getString("language", "en") == "pl") {
+            if (sharedPreferences.getString("language", "en") == "pl") {
                 return@setOnClickListener
             }
             changeLanguage("pl")

@@ -58,4 +58,26 @@
     <style name="BackArrow">
         <item name="android:src">@drawable/white_mode_backarrow32px</item>
     </style>
+
+    <style name="HelpWindowBackground">
+        <item name="android:background">@drawable/help_window_background</item>
+    </style>
+
+    <style name="HelpWindowTextStyle">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="HelpWindowFormulaTextStyle">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="HelpWindowCloseButtonBackground">
+        <item name="android:background">@drawable/help_window_close_background</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
