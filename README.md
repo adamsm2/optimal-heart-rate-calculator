@@ -1,5 +1,5 @@
 # Optimal Heart Rate Calculator
-Mobile application which calculates optimal heart rates based on given parameters.
+A mobile application which calculates the optimal heart rate based on given parameters.
 
 ## Screenshots
 ![1](https://github.com/adamsm2/optimal-heart-rate-calculator/assets/95346590/c208273f-cb40-4125-85d1-cb3c8f02d9e2)
